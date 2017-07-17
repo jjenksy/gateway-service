@@ -40,7 +40,36 @@ eureka:
 ```
 Name of the service and the location of the Eureka server
 
+### Filters in Netflix OSS Zuul
+``pre`` Before the request
+``route`` Direct the request
+``post`` After the request is routed
+``error`` handle request to error
 
+To define a Zuul filter create a class the extends ``ZuulFilter``
+and implement its methods.
+```
+    //the type of filter pre, route, post, error
+    @Override
+    public String filterType() {
+        return null;
+    }
+    //order of execution with respect to other filters to execute
+    @Override
+    public int filterOrder() {
+        return 0;
+    }
+    //whether or not to run the filter
+    @Override
+    public boolean shouldFilter() {
+        return false;
+    }
+    //filter logic
+    @Override
+    public Object run() {
+        return null;
+    }
+```
 ## Actuator
 Access the actuator through postman or curl at:
 ```
